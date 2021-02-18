@@ -1,0 +1,48 @@
+Values are returned from function by using the optional return statement.
+
+Any type may be returned, including arrays and objects.
+
+This causes the function to end its execution immediately and pass control back to the line from which it was called.
+
+If the return is omitted the value null will be returned.
+
+Use of return
+
+Copy
+<?php
+function square($num)
+{
+    return $num * $num;
+}
+echo square(4);   // outputs '16'.
+?>
+
+
+
+A function can not return multiple values, but similar results can be obtained by returning an array.
+
+Returning an array to get multiple values
+
+Copy
+<?php
+function small_numbers()
+{
+    return array (0, 1, 2);
+}
+list ($zero, $one, $two) = small_numbers();
+?>
+
+
+To return a reference from a function, use the reference operator & in both the function declaration and when assigning the returned value to a variable:
+
+Returning a reference from a function
+
+Copy
+<?php
+function &returns_reference()
+{
+    return $someref;
+}
+
+$newref =& returns_reference();
+?>
