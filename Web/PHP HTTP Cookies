@@ -1,0 +1,41 @@
+PHP transparently supports HTTP cookies.
+
+Cookies are a mechanism for storing data in the remote browser and thus tracking or identifying return users.
+
+You can set cookies using the setcookie() function.
+
+Cookies are part of the HTTP header, so the setcookie() function must be called before any output is sent to the browser.
+
+This is the same restriction as for the header() function.
+
+Cookie data is then available in the appropriate cookie data arrays, such as $_COOKIE as well as in $_REQUEST.
+
+If you wish to assign multiple values to a single cookie variable, you may assign it as an array.
+
+For example:
+
+Copy
+<?php
+  setcookie("MyCookie[foo]", 'Testing 1', time()+3600);
+  setcookie("MyCookie[bar]", 'Testing 2', time()+3600);
+?>
+The code above will create two separate cookies although MyCookie will now be a single array in your script.
+
+If you want to set just one cookie with multiple values, consider using serialize() or explode() on the value first.
+
+Note that a cookie will replace a previous cookie by the same name in your browser unless the path or domain is different.
+
+So, for a shopping cart application you may want to keep a counter and pass this along.
+
+A setcookie() example
+
+Copy
+<?php
+if (isset($_COOKIE['count'])) {
+    $count = $_COOKIE['count'] + 1;
+} else {
+    $count = 1;
+}
+setcookie('count', $count, time()+3600);
+setcookie("Cart[$count]", $item, time()+3600);
+?>
