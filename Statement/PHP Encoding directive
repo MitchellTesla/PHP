@@ -1,0 +1,14 @@
+A script's encoding can be specified per-script using the encoding directive.
+
+Declaring an encoding for the script.
+
+Copy
+<?php
+declare(encoding='ISO-8859-1');
+// code here
+?>
+When combined with namespaces, the only legal syntax for declare is declare(encoding='...');
+
+where ... is the encoding value.
+
+declare(encoding='...') {} will result in a parse error when combined with namespaces.
