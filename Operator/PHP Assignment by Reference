@@ -1,0 +1,22 @@
+Assignment by reference is supported by PHP, using the syntax as:
+
+Copy
+$var = &$other_var;
+Assignment by reference means that both variables end up pointing at the same data, and nothing is copied anywhere.
+
+Assigning by reference
+
+Copy
+<?php
+$a = 3;
+$b = &$a; // $b is a reference to $a
+
+print "$a\n"; // prints 3
+print "$b\n"; // prints 3
+
+$a = 4; // change $a
+
+print "$a\n"; // prints 4
+print "$b\n"; // prints 4 as well, since $b is a reference to $a, which has
+              // been changed
+?>
