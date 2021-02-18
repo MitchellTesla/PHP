@@ -1,0 +1,63 @@
+An array in PHP is actually an ordered map.
+
+A map is a type that associates values to keys.
+
+PHP array type is optimized for several different uses; it can be treated as
+
+an array,
+list (vector),
+hash table (an implementation of a map),
+dictionary,
+collection,
+stack,
+queue, and
+probably more.
+As array values can be other arrays, trees and multidimensional arrays are also possible.
+
+Syntax
+An array can be created using the array() function.
+
+It takes any number of comma-separated key => value pairs as arguments.
+
+Copy
+array(
+    key  => value,
+    key2 => value2,
+    key3 => value3,
+    ...
+)
+Result
+
+
+The key can either be an int or a string.
+
+The value can be of any type.
+
+The comma after the last array element is optional and can be omitted.
+
+This is usually done for single-line arrays.
+
+array(1, 2) is preferred over array(1, 2, ).
+
+For multi-line arrays on the other hand the trailing comma is commonly used, as it allows easier addition of new elements at the end.
+
+A short array syntax exists which replaces array() with [].
+
+Example
+
+A simple array
+
+Copy
+<?php
+$array = array(
+    "foo" => "bar",
+    "bar" => "foo",
+);
+print_r($array);
+// Using the short array syntax
+$array = [
+    "foo" => "bar",
+    "bar" => "foo",
+];
+print_r($array);
+?>
