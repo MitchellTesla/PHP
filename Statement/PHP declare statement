@@ -1,0 +1,45 @@
+The declare statement is used to set execution directives for a block of code.
+
+The syntax of declare is similar to the syntax of other flow control constructs:
+
+Copy
+declare (directive)
+    statement
+Result
+
+
+Three directives are recognized:
+
+the ticks directive,
+the encoding directive and
+the strict_types directive
+As directives are handled as the file is being compiled, only literals may be given as directive values.
+
+Variables and constants cannot be used. To illustrate:
+
+Copy
+<?php
+// This is valid:
+declare(ticks=1);
+
+// This is invalid:
+const TICK_VALUE = 1;
+declare(ticks=TICK_VALUE);
+?>
+The declare construct can also be used in the global scope, affecting all code following it.
+
+If the file with declare was included then it does not affect the parent file.
+
+Copy
+<?php
+// these are the same:
+
+// you can use this:
+declare(ticks=1) {
+    // entire script here
+}
+
+// or you can use this:
+declare(ticks=1);
+// entire script here
+?>
