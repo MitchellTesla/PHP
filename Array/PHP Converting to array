@@ -1,0 +1,37 @@
+For any of the types int, float, string, bool and resource, converting a value to an array results in an array with a single element with index zero.
+
+In other words, (array)$scalar_Value is exactly the same as array($scalar_Value).
+
+If an object is converted to an array, the result is an array whose elements are the object's properties.
+
+The keys are the member variable names, with a few notable exceptions:
+
+integer properties are unaccessible;
+private variables have the class name prepended to the variable name;
+protected variables have a '*' prepended to the variable name.
+These prepended values have null bytes on either side.
+
+This can result in some unexpected behaviour:
+
+Copy
+<?php
+
+class A {
+    private $A; // This will become '\0A\0A'
+}
+
+class B extends A {
+    private $A; // This will become '\0B\0A'
+    public $AA; // This will become 'AA'
+}
+
+var_dump((array) new B());
+?>
+Result
+
+
+The above will appear to have two keys named 'AA', although one of them is actually named '\0A\0A'.
+
+Converting null to an array results in an empty array.
+
+It is possible to compare arrays with the array_diff() function and with array operators.
