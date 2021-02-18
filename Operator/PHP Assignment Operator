@@ -1,0 +1,16 @@
+The basic assignment operator is "=".
+
+It really means that the left operand gets set to the value of the expression on the right.
+
+The value of an assignment expression is the value assigned.
+
+That is, the value of "$a = 3" is 3.
+
+This allows you to do some tricky things:
+
+Copy
+<?php
+
+$a = ($b = 4) + 5; // $a is equal to 9 now, and $b has been set to 4.
+print($a);
+?>
