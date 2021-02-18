@@ -1,0 +1,20 @@
+No special syntax is required to note that a function is variadic.
+
+Access to the function's arguments must use func_num_args(), func_get_arg() and func_get_args().
+
+The first example above would be implemented as follows in old versions of PHP:
+
+Accessing variable arguments in old PHP versions
+
+Copy
+<?php
+function sum() {
+    $acc = 0;
+    foreach (func_get_args() as $n) {
+        $acc += $n;
+    }
+    return $acc;
+}
+
+echo sum(1, 2, 3, 4);
+?>
