@@ -1,0 +1,66 @@
+Because include is a special language construct, parentheses are not needed around its argument.
+
+Take care when comparing return value.
+
+Comparing return value of include
+
+Copy
+<?php
+// won't work, evaluated as include(('vars.php') == TRUE), i.e. include('1')
+if (include('vars.php') == TRUE) {
+    echo 'OK';
+}
+
+// works
+if ((include 'vars.php') == TRUE) {
+    echo 'OK';
+}
+?>
+
+
+
+
+include and the return statement
+
+Copy
+return.php
+<?php
+
+$var = 'PHP';
+
+return $var;
+
+?>
+noreturn.php
+<?php
+
+$var = 'PHP';
+
+?>
+
+testreturns.php
+<?php
+
+$foo = include 'return.php';
+
+echo $foo; // prints 'PHP'
+
+$bar = include 'noreturn.php';
+
+echo $bar; // prints 1
+
+?>
+
+
+
+$bar is the value 1 because the include was successful.
+
+The first uses return within the included file while the other does not.
+
+If the file can't be included, false is returned and E_WARNING is issued.
+
+If there are functions defined in the included file, they can be used in the main file independent if they are before return or after.
+
+If the file is included twice, PHP will raise a fatal error because the functions were already declared.
+
+It is recommended to use include_once instead of checking if the file was already included and conditionally return inside the included file.
