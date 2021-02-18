@@ -1,0 +1,31 @@
+Strings containing valid decimal ints, unless the number is preceded by a + sign, will be cast to the int type. E.g. the key "8" will actually be stored under 8.
+
+"08" will not be cast, as it isn't a valid decimal integer.
+
+Floats are also cast to ints, which means that the fractional part will be truncated. E.g. the key 8.7 will actually be stored under 8.
+
+Bools are cast to ints, too, i.e. the key true will actually be stored under 1 and the key false under 0.
+
+Null will be cast to the empty string, i.e. the key null will actually be stored under "".
+
+Arrays and objects can not be used as keys. Doing so will result in a warning: Illegal offset type.
+
+If multiple elements in the array declaration use the same key, only the last one will be used as all others are overwritten.
+
+Example
+Type Casting and Overwriting example
+
+Copy
+<?php
+$array = array(
+    1    => "a",
+    "1"  => "b",
+    1.5  => "c",
+    true => "d",
+);
+var_dump($array);
+?>
+
+
+
+As all the keys in the above example are cast to 1, the value will be overwritten on every new element and the last assigned value "d" is the only one left over.
