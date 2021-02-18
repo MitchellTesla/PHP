@@ -1,0 +1,83 @@
+PHP if statement allows for conditional execution of code fragments.
+
+Copy
+if (expr)
+  statement
+If expression evaluates to true, PHP will execute statement, and if it evaluates to false - it'll ignore it.
+
+The following example would display a is bigger than b if $a is bigger than $b:
+
+Copy
+<?php
+if ($a > $b)
+    echo "a is bigger than b";
+?>
+To have more than one statement to be executed conditionally, group several statements into a statement group.
+
+For example, this code would display a is bigger than b if $a is bigger than $b, and would then assign the value of $a into $b:
+
+Copy
+<?php
+if ($a > $b) {
+  echo "a is bigger than b";
+  $b = $a;
+}
+?>
+If statements can be nested infinitely within other if statements, which provides you with complete flexibility for conditional execution of the various parts of your program.
+
+else
+else extends an if statement to execute a statement in case the expression in the if statement evaluates to false.
+
+For example, the following code would display a is greater than b if $a is greater than $b, and a is NOT greater than b otherwise:
+
+Copy
+<?php
+if ($a > $b) {
+  echo "a is greater than b";
+} else {
+  echo "a is NOT greater than b";
+}
+?>
+elseif/else if
+elseif is a combination of if and else.
+
+Like else, it extends an if statement to execute a different statement in case the original if expression evaluates to false.
+
+It will execute that alternative expression only if the elseif conditional expression evaluates to true.
+
+For example, the following code would display a is bigger than b, a equal to b or a is smaller than b:
+
+Copy
+<?php
+if ($a > $b) {
+    echo "a is bigger than b";
+} elseif ($a == $b) {
+    echo "a is equal to b";
+} else {
+    echo "a is smaller than b";
+}
+?>
+There may be several elseif statements within the same if statement.
+
+When using a colon to define your if/elseif conditions, you must not separate else if into two words, or PHP will fail with a parse error.
+
+Copy
+<?php
+/* Incorrect Method: */
+if ($a > $b):
+    echo $a." is greater than ".$b;
+else if ($a == $b): // Will not compile.
+    echo "The above line causes a parse error.";
+endif;
+
+
+/* Correct Method: */
+if ($a > $b):
+    echo $a." is greater than ".$b;
+elseif ($a == $b): // Note the combination of the words.
+    echo $a." equals ".$b;
+else:
+    echo $a." is neither greater than or equal to ".$b;
+endif;
+
+?>
