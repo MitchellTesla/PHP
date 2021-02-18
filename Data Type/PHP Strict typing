@@ -1,0 +1,61 @@
+By default, PHP will coerce values of the wrong type into the expected scalar type declaration if possible.
+
+For example, a function that is given an int for a parameter that expects a string will get a variable of type string.
+
+It is possible to enable strict mode on a per-file basis.
+
+In strict mode, only a value corresponding exactly to the type declaration will be accepted, otherwise a TypeError will be thrown.
+
+The only exception to this rule is that an int value will pass a float type declaration.
+
+Function calls from within internal functions will not be affected by the strict_types declaration.
+
+To enable strict mode, the declare statement is used with the strict_types declaration:
+
+Strict typing is only defined for scalar type declarations.
+
+Strict typing for arguments values
+
+Copy
+<?php
+declare(strict_types=1);
+
+function sum(int $a, int $b) {
+    return $a + $b;
+}
+
+var_dump(sum(1, 2));
+var_dump(sum(1.5, 2.5));
+?>
+Result
+
+
+Coercive typing for argument values
+
+Copy
+<?php
+function sum(int $a, int $b) {
+    return $a + $b;
+}
+
+var_dump(sum(1, 2));
+
+// These will be coerced to integers: note the output below!
+var_dump(sum(1.5, 2.5));
+?>
+Result
+
+
+Strict typing for return values
+
+Copy
+<?php
+declare(strict_types=1);
+
+function sum($a, $b): int {
+    return $a + $b;
+}
+
+var_dump(sum(1, 2));
+var_dump(sum(1, 2.5));
+?>
