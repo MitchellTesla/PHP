@@ -1,0 +1,62 @@
+Basic class definitions begin with the keyword class, followed by a class name, followed by a pair of curly braces which enclose the definitions of the properties and methods belonging to the class.
+
+The class name can be any valid label, provided it is not a PHP reserved word.
+
+A valid class name starts with a letter or underscore, followed by any number of letters, numbers, or underscores.
+
+A class may contain its own constants, variables (called "properties"), and functions (called "methods").
+
+Simple Class definition
+
+Copy
+<?php
+class SimpleClass
+{
+    // property declaration
+    public $var = 'a default value';
+
+    // method declaration
+    public function displayVar() {
+        echo $this->var;
+    }
+}
+?>
+
+
+
+The pseudo-variable $this is available when a method is called from within an object context.
+
+$this is the value of the calling object.
+
+new
+To create an instance of a class, the new keyword must be used.
+
+If a string containing the name of a class is used with new, a new instance of that class will be created.
+
+If the class is in a namespace, its fully qualified name must be used when doing this.
+
+If there are no arguments to be passed to the class's constructor, parentheses after the class name may be omitted.
+
+Creating an instance
+
+Copy
+<?php
+class SimpleClass
+{
+    // property declaration
+    public $var = 'a default value';
+
+    // method declaration
+    public function displayVar() {
+        echo $this->var;
+    }
+}
+$instance = new SimpleClass();
+
+// This can also be done with a variable:
+$className = 'SimpleClass';
+$instance = new $className(); // new SimpleClass()
+?>
+
+
+In the class context, it is possible to create a new object by new self and new parent.
