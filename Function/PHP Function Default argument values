@@ -1,0 +1,65 @@
+A function may define default values for scalar arguments as follows:
+
+Copy
+<?php
+function a($type = "test")
+{
+    return "in function: $type.\n";
+}
+echo a();
+echo a(null);
+echo a("new");
+?>
+
+
+
+PHP also allows the use of arrays and the special type null as default values, for example:
+
+Using non-scalar types as default values
+
+Copy
+<?php
+function a($types = array(1,2,3), $another = NULL)
+{
+    $device = is_null($another) ? "default" : $another;
+    return "in function ".join(", ", $types)." $device.\n";
+}
+echo a();
+echo a(array("A", "B"), "extra");
+?>
+
+
+
+The default value must be a constant expression, not a variable, a class member or a function call.
+
+Note that when using default arguments, any defaults should be on the right side of any non-default arguments.
+
+Consider the following code snippet:
+
+Incorrect usage of default function arguments
+
+Copy
+<?php
+function a($type = "a", $flavour)
+{
+    return "in function: $type $flavour.\n";
+}
+
+echo a("b");   // won't work as expected
+?>
+Now, compare the above with this:
+
+Correct usage of default function arguments
+
+Copy
+<?php
+function a($flavour, $type = "new")
+{
+    return "$type $flavour.\n";
+}
+
+echo a("abc");   // works as expected
+?>
+
+
+Arguments that are passed by reference may have a default value
