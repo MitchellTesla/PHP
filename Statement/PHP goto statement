@@ -1,0 +1,57 @@
+The goto statement can jump to another section in the program.
+
+The target point is specified by a case-sensitive label followed by a colon.
+
+The target label must be within the same file and context.
+
+You cannot jump out of a function or method, nor can you jump into one.
+
+You also cannot jump into any sort of loop or switch structure.
+
+You may jump out of loop and switch statement.
+
+A common use is to use a goto in place of a multi-level break.
+
+goto example
+
+Copy
+<?php
+goto a;
+echo 'Foo';
+
+a:
+echo 'Bar';
+?>
+
+
+
+goto loop example
+
+Copy
+<?php
+for($i=0,$j=50; $i<100; $i++) {
+  while($j--) {
+    if($j==17) goto end;
+  }
+}
+echo "i = $i";
+end:
+echo 'j hit 17';
+?>
+
+
+
+
+
+This will not work
+
+Copy
+<?php
+goto loop;
+for($i=0,$j=50; $i<100; $i++) {
+  while($j--) {
+    loop:
+  }
+}
+echo "$i = $i";
+?>
