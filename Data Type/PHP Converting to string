@@ -1,0 +1,27 @@
+A value can be converted to a string using the (string) cast or the strval() function.
+
+String conversion is automatically done in the scope of an expression where a string is needed.
+
+This happens when using the echo or print functions, or when a variable is compared to a string.
+
+Bool
+A bool true value is converted to the string "1". bool false is converted to "" (the empty string). This allows conversion back and forth between bool and string values.
+
+Number
+An int or float is converted to a string representing the number textually (including the exponent part for floats).
+
+Floating point numbers can be converted using exponential notation (4.1E+6).
+
+Array
+Arrays are always converted to the string "Array".
+
+Because of this, echo and print can not by themselves show the contents of an array.
+
+To view a single element, use a construction such as echo $arr['foo'].
+
+print_r() and var_dump() for more effective means of inspecting the contents of array and object types.
+
+Object
+In order to convert objects to string magic method __toString must be used.
+
+null is always converted to an empty string.
