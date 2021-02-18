@@ -1,0 +1,90 @@
+The match expression branches evaluation based on an identity check of a value.
+
+Similarly to a switch statement, a match expression has a subject expression that is compared against multiple alternatives.
+
+Unlike switch, it will evaluate to a value much like ternary expressions.
+
+The comparison is an identity check (===) rather than a weak equality check (==).
+
+Match expressions are available as of PHP 8.0.0.
+
+Syntax of a match expression
+
+Copy
+<?php
+$return_value = match (subject_expression) {
+    single_conditional_expression => return_expression,
+    conditional_expression1, conditional_expression2 => return_expression,
+};
+?>
+The result of a match expression does not need to be used.
+
+A match expression must be terminated by a semicolon ;.
+
+The match expression is similar to a switch statement but has some key differences:
+
+A match arm compares values strictly (===) instead of loosely as the switch statement does.
+A match expression returns a value.
+Match arms do not fall-through to later cases the way switch statements do.
+A match expression must be exhaustive.
+As switch statements, match expressions are executed match arm by match arm.
+
+Copy
+<?php
+$result = match ($x) {
+    foo() => ...,
+    $this->bar() => ..., // bar() isn't called if foo() === $x
+    $this->baz => beep(), // beep() isn't called unless $x === $this->baz
+    // etc.
+};
+?>
+match expression arms may contain multiple expressions separated by a comma.
+
+That is a logical OR, and is a short-hand for multiple match arms with the same right-hand side.
+
+Copy
+<?php
+$result = match ($x) {
+    // This match arm:
+    $a, $b, $c => 5,
+    // Is equivalent to these three match arms:
+    $a => 5,
+    $b => 5,
+    $c => 5,
+};
+?>
+A special case is the default pattern.
+
+This pattern matches anything that wasn't previously matched.
+
+For example:
+
+Copy
+<?php
+$expressionResult = match ($condition) {
+    1, 2 => foo(),
+    3, 4 => bar(),
+    default => baz(),
+};
+?>
+Note: Multiple default patterns will raise a E_FATAL_ERROR error.
+
+A match expression must be exhaustive.
+
+If the subject expression is not handled by any match arm an UnhandledMatchError is thrown.
+
+Example of an unhandled match expression
+
+Copy
+<?php
+$condition = 5;
+
+try {
+    match ($condition) {
+        1, 2 => foo(),
+        3, 4 => bar(),
+    };
+} catch (\UnhandledMatchError $e) {
+    var_dump($e);
+}
+?>
