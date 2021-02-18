@@ -1,0 +1,30 @@
+The ternary conditional operator:
+
+Copy
+<?php
+$first ? $second : $third
+?>
+If the value of the first subexpression is true (non-zero), then the second subexpression is evaluated, and that is the result of the conditional expression.
+
+Otherwise, the third subexpression is evaluated, and that is the value.
+
+Assigning a default value
+
+Copy
+<?php
+// Example usage for: Ternary Operator
+$action = (empty($_POST['action'])) ? 'default' : $_POST['action'];
+
+// The above is identical to this if/else statement
+if (empty($_POST['action'])) {
+    $action = 'default';
+} else {
+    $action = $_POST['action'];
+}
+
+?>
+It is possible to leave out the middle part of the ternary operator.
+
+Expression expr1 ?: expr3 returns expr1 if expr1 evaluates to true, and expr3 otherwise.
+
+The ternary operator is an expression, and that it doesn't evaluate to a variable, but to the result of an expression
