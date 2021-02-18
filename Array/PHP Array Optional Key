@@ -1,0 +1,34 @@
+The key is optional.
+
+If it is not specified, PHP will use the increment of the largest previously used int key.
+
+Indexed arrays without key
+
+Copy
+<?php
+$array = array("foo", "bar", "hello", "world");
+var_dump($array);
+?>
+
+
+
+It is possible to specify the key only for some elements and leave it out for others:
+
+Keys not on all elements
+
+Copy
+<?php
+$array = array(
+         "a",
+         "b",
+    6 => "c",
+         "d",
+);
+var_dump($array);
+?>
+
+
+
+As you can see the last value "d" was assigned the key 7.
+
+This is because the largest integer key before that was 6
