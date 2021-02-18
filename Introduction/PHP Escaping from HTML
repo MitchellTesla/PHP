@@ -1,0 +1,20 @@
+Everything outside of a pair of opening and closing tags is ignored by the PHP parser which allows PHP files to have mixed content.
+
+This allows PHP to be embedded in HTML documents, for example to create templates.
+
+Copy
+<p>This is going to be ignored by PHP and displayed by the browser.</p>
+<?php echo 'While this is going to be parsed.'; ?>
+<p>This will also be ignored by PHP and displayed by the browser.</p>
+
+
+
+Structures with conditions
+Advanced escaping using conditions
+
+Copy
+<?php $expression = true; if ($expression == true): ?>
+  This will show if the expression is true.
+<?php else: ?>
+  Otherwise this will show.
+<?php endif; ?>
