@@ -1,0 +1,99 @@
+Heredocs containing variables can not be used for initializing class properties.
+
+Heredoc text behaves just like a double-quoted string, without the double quotes.
+
+This means that quotes in a heredoc do not need to be escaped, but the escape codes listed above can still be used.
+
+Variables are expanded, but the same care must be taken when expressing complex variables inside a heredoc as with strings.
+
+Heredoc string quoting example
+
+Copy
+<?php
+$str = <<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+
+/* More complex example, with variables. */
+class MyClass
+{
+    var $foo;
+    var $bar;
+
+    function __construct()
+    {
+        $this->foo = 'Foo';
+        $this->bar = array('Bar1', 'Bar2', 'Bar3');
+    }
+}
+
+$foo = new MyClass();
+$name = 'MyName';
+
+echo <<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should print a capital 'A': \x41
+EOT;
+?>
+Result
+
+
+The above example will output:
+
+Copy
+My name is "MyName". I am printing some Foo.
+Now, I am printing some Bar2.
+This should print a capital 'A': A
+It is also possible to use the Heredoc syntax to pass data to function arguments:
+
+Heredoc in arguments example
+
+Copy
+<?php
+var_dump(array(<<<EOD
+foobar!
+EOD
+));
+?>
+Result
+
+
+It's possible to initialize static variables and class properties/constants using the Heredoc syntax:
+
+Using Heredoc to initialize static values
+
+Copy
+<?php
+// Static variables
+function MyClass()
+{
+    static $bar = <<<LABEL
+Nothing in here...
+LABEL;
+}
+
+// Class properties/constants
+class MyClass
+{
+    const BAR = <<<FOOBAR
+Constant example
+FOOBAR;
+
+    public $baz = <<<FOOBAR
+Property example
+FOOBAR;
+}
+?>
+The opening Heredoc identifier may optionally be enclosed in double quotes:
+
+Using double quotes in Heredoc
+
+Copy
+<?php
+echo <<<"FOOBAR"
+Hello World!
+FOOBAR;
+?>
