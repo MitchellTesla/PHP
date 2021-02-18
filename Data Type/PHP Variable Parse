@@ -1,0 +1,25 @@
+When a string is specified in double quotes or with heredoc, variables are parsed within it.
+
+There are two types of syntax: a simple one and a complex one.
+
+The simple syntax provides a way to embed a variable, an array value, or an object property in a string with a minimum of effort.
+
+The complex syntax can be recognised by the curly braces surrounding the expression.
+
+Simple syntax
+If a dollar sign ($) is encountered, the parser will greedily take as many tokens as possible to form a valid variable name.
+
+Enclose the variable name in curly braces to explicitly specify the end of the name.
+
+Copy
+<?php
+$juice = "orange";
+
+echo "He drank some $juice juice." . PHP_EOL;
+// Invalid. "s" is a valid character for a variable name,
+// but the variable is $juice.
+echo "He drank some juice made of $juices.";
+// Valid. Explicitly specify the end of the variable name 
+// by enclosing it in braces:
+echo "He drank some juice made of ${juice}s.";
+?>
