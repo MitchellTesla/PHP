@@ -1,0 +1,113 @@
+instanceof is used to determine whether a PHP variable is an instantiated object of a certain class:
+
+Using instanceof with classes
+
+Copy
+<?php
+class MyClass{}
+
+class NotMyClass{}
+$a = new MyClass;
+
+var_dump($a instanceof MyClass);
+var_dump($a instanceof NotMyClass);
+?>
+Result
+
+
+instanceof can also be used to determine whether a variable is an instantiated object of a class that inherits from a parent class:
+
+Using instanceof with inherited classes
+
+Copy
+<?php
+class ParentClass{}
+
+class MyClass extends ParentClass{}
+
+$a = new MyClass;
+
+var_dump($a instanceof MyClass);
+var_dump($a instanceof ParentClass);
+?>
+Result
+
+
+To check if an object is not an instanceof a class, the logical not operator can be used.
+
+Using instanceof to check if object is not an instanceof a class
+
+Copy
+<?php
+class MyClass{}
+
+$a = new MyClass;
+var_dump(!($a instanceof stdClass));
+?>
+Result
+
+
+instanceof can also be used to determine whether a variable is an instantiated object of a class that implements an interface:
+
+Using instanceof with interfaces
+
+Copy
+<?php
+interface MyInterface{}
+
+class MyClass implements MyInterface{}
+
+$a = new MyClass;
+
+var_dump($a instanceof MyClass);
+var_dump($a instanceof MyInterface);
+?>
+Result
+
+
+Although instanceof is usually used with a literal classname, it can also be used with another object or a string variable:
+
+Using instanceof with other variables
+
+Copy
+<?php
+interface MyInterface{}
+
+class MyClass implements MyInterface{}
+
+$a = new MyClass;
+$b = new MyClass;
+$c = 'MyClass';
+$d = 'NotMyClass';
+
+var_dump($a instanceof $b); // $b is an object of class MyClass
+var_dump($a instanceof $c); // $c is a string 'MyClass'
+var_dump($a instanceof $d); // $d is a string 'NotMyClass'
+?>
+Result
+
+
+instanceof does not throw any error if the variable being tested is not an object, it simply returns false.
+
+Using instanceof to test other variables
+
+Copy
+<?php
+$a = 1;
+$b = NULL;
+$c = imagecreate(5, 5);
+var_dump($a instanceof stdClass); // $a is an integer
+var_dump($b instanceof stdClass); // $b is NULL
+var_dump($c instanceof stdClass); // $c is a resource
+var_dump(FALSE instanceof stdClass);
+?>
+Using instanceof to test constants
+
+Copy
+<?php
+var_dump(FALSE instanceof stdClass);
+?>
+Result
+
+
+The instanceof operator has a functional variant with the is_a() function.
