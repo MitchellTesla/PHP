@@ -1,0 +1,50 @@
+It is possible to iterate over an array of arrays and unpack the nested array into loop variables by providing a list() as the value.
+
+For example:
+
+Copy
+<?php
+$array = [
+    [1, 2],
+    [3, 4],
+];
+
+foreach ($array as list($a, $b)) {
+    // $a contains the first element of the nested array,
+    // and $b contains the second element.
+    echo "A: $a; B: $b\n";
+}
+?>
+Result
+
+
+You can provide fewer elements in the list() than there are in the nested array, in which case the leftover array values will be ignored:
+
+Copy
+<?php
+$array = [
+    [1, 2],
+    [3, 4],
+];
+
+foreach ($array as list($a)) {
+    // Note that there is no $b here.
+    echo "$a\n";
+}
+?>
+Result
+
+
+A notice will be generated if there aren't enough array elements to fill the list():
+
+Copy
+<?php
+$array = [
+    [1, 2],
+    [3, 4],
+];
+
+foreach ($array as list($a, $b, $c)) {
+    echo "A: $a; B: $b; C: $c\n";
+}
+?>
