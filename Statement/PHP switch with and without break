@@ -1,0 +1,52 @@
+The switch statement executes statement by statement.
+
+In the beginning, no code is executed.
+
+Only when a case statement is found whose expression evaluates to a value that matches the value of the switch expression does PHP begin to execute the statements.
+
+PHP continues to execute the statements until the end of the switch block, or the first time it sees a break statement.
+
+If you don't write a break statement at the end of a case's statement list, PHP will go on executing the statements of the following case.
+
+For example:
+
+Copy
+<?php
+$i = 1;
+switch ($i) {
+    case 0:
+        echo "i equals 0";
+    case 1:
+        echo "i equals 1";
+    case 2:
+        echo "i equals 2";
+}
+?>
+Result
+
+
+Here, if $i is equal to 0, PHP would execute all of the echo statements! If $i is equal to 1, PHP would execute the last two echo statements.
+
+You would get the expected behavior ('i equals 2' would be displayed) only if $i is equal to 2.
+
+Thus, it is important not to forget break statements.
+
+In a switch statement, the condition is evaluated only once and the result is compared to each case statement.
+
+In an elseif statement, the condition is evaluated again.
+
+The statement list for a case can also be empty, which simply passes control into the statement list for the next case.
+
+Copy
+<?php
+$i = 1;
+switch ($i) {
+    case 0:
+    case 1:
+    case 2:
+        echo "i is less than 3 but not negative";
+        break;
+    case 3:
+        echo "i is 3";
+}
+?>
