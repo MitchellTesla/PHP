@@ -1,0 +1,60 @@
+The basic assignment operator is "=".
+
+In addition to the basic assignment operator, there are combined operators for all of the binary arithmetic, array union and string operators.
+
+It allows you to use a value in an expression and then set its value to the result of that expression.
+
+If you want to increment $a by 1, you can simply write '$a++' or '++$a'.
+
+To add more than one to it, for instance 3, write '$a = $a + 3'.
+
+'$a + 3' evaluates to the value of $a plus 3, and is assigned back into $a, which results in incrementing $a by 3.
+
+In PHP, you can write this in a shorter way, which with time would become clearer and quicker to understand as well.
+
+Adding 3 to the current value of $a can be written '$a += 3'.
+
+Any two-place operator can be used in this operator-assignment mode, for example
+
+Copy
+$a -= 5 //subtract 5 from the value of $a
+$b *= 7 //multiply the value of $b by 7), etc.
+Examples:
+
+Copy
+<?php
+
+$a = 3;
+print($a);
+$a += 5; // sets $a to 8, as if we had said: $a = $a + 5;
+print($a);
+$b = "Hello ";
+print($b);
+$b .= "There!"; // sets $b to "Hello There!", just like $b = $b . "There!";
+print($b);
+?>
+Result
+
+
+Arithmetic Assignment Operators
+Example	Equivalent	Operation
+$a += $b	$a = $a + $b	Addition
+$a -= $b	$a = $a - $b	Subtraction
+$a *= $b	$a = $a * $b	Multiplication
+$a /= $b	$a = $a / $b	Division
+$a %= $b	$a = $a % $b	Modulus
+
+
+Bitwise Assignment Operators
+Example	Equivalent	Operation
+$a &= $b	$a = $a & $b	Bitwise And
+$a |= $b	$a = $a | $b	Bitwise Or
+$a ^= $b	$a = $a ^ $b	Bitwise Xor
+$a <<= $b	$a = $a << $b	Left Shift
+$a >>= $b	$a = $a >> $b	Right Shift
+
+
+Other Assignment Operators
+Example	Equivalent	Operation
+$a .= $b	$a = $a . $b	String Concatenation
+$a ??= $b	$a = $a ?? $b	Null Coalesce
