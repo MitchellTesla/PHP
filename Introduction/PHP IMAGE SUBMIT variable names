@@ -1,0 +1,9 @@
+Copy
+<input type="image" src="image.gif" name="sub" />
+
+
+When the user clicks somewhere on the image, the accompanying form will be transmitted to the server with two additional variables, sub_x and sub_y.
+
+These contain the coordinates of the user click within the image.
+
+The experienced may note that the actual variable names sent by the browser contains a period rather than an underscore, but PHP converts the period to an underscore automatically.
