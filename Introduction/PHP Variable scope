@@ -1,0 +1,29 @@
+The scope of a variable is the context within which it is defined.
+
+For the most part all PHP variables only have a single scope.
+
+This single scope spans included and required files as well.
+
+For example:
+
+Copy
+<?php
+$a = 1;
+include 'b.inc';
+?>
+Here the $a variable will be available within the included b.inc script.
+
+Within user-defined functions a local function scope is introduced. Any variable used inside a function is by default limited to the local function scope.
+
+For example:
+
+Copy
+<?php
+$a = 1; /* global scope */
+function test()
+{
+    echo $a; /* reference to local scope variable */
+}
+test();
+?>
+This script will not produce any output because the echo statement refers to a local version of the $a variable, and it has not been assigned a value within this scope.
