@@ -1,0 +1,34 @@
+When a string needs to be evaluated as number, for example in arithmetic operations, or in int type declaration, the following steps are taken to determine the outcome:
+
+The usage of a leading numeric string would raise an E_NOTICE instead of an E_WARNING.
+If the string is not numeric, an E_WARNING was raised and the value 0 would be returned.
+Copy
+<?php
+// $foo is float (11.5)
+$foo = 1 + "10.5";   
+
+// $foo is float (-1299)
+$foo = 1 + "-1.3e3"; 
+
+// TypeError as of PHP 8.0.0, $foo is integer (1) previously
+$foo = 1 + "abc-1.3e3";
+
+// TypeError as of PHP 8.0.0, $foo is integer (1) previously
+$foo = 1 + "abc3"; 
+
+// $foo is integer (11) and an E_WARNING is raised in PHP 8.0.0, 
+// E_NOTICE previously
+$foo = 1 + "10 text";
+
+// $foo is float (14.2) and an E_WARNING is raised in PHP 8.0.0, 
+// E_NOTICE previously
+$foo = 4 + "10.2 text"; 
+
+// $foo is float (11) and an E_WARNING is raised in PHP 8.0.0, 
+//E_NOTICE previously
+$foo = "10.0 text " + 1;
+
+// $foo is float (11) and an E_WARNING is raised in PHP 8.0.0, 
+//E_NOTICE previously
+$foo = "10.0 text " + 1.0; 
+?>
