@@ -1,0 +1,99 @@
+A constant is a name for a simple value.
+
+The value of a constant cannot change during the execution of the script.
+
+Constants are case-sensitive.
+
+By convention, constant identifiers are always uppercase.
+
+The name of a constant follows the same rules as any label in PHP.
+
+A valid constant name starts with a letter or underscore, followed by any number of letters, numbers, or underscores.
+
+Valid and invalid constant names
+
+Copy
+<?php
+
+// Valid constant names
+define("FOO",     "something");
+define("FOO2",    "something else");
+define("FOO_BAR", "something more");
+
+// Invalid constant names
+define("2FOO",    "something");
+
+// This is valid, but should be avoided:
+// PHP may one day provide a magical constant
+// that will break your script
+define("__FOO__", "something");
+
+?>
+Like superglobals, the scope of a constant is global.
+
+Constants can be accessed from anywhere in a script without regard to scope.
+
+Syntax
+Constants can be defined using the const keyword, or by using the define()-function.
+
+While define() allows a constant to be defined to an arbitrary expression, the const keyword has restrictions.
+
+Once a constant is defined, it can never be changed or undefined.
+
+When using the const keyword, only scalar (bool, int, float and string) expressions and constant arrays containing only scalar expressions are accepted.
+
+The value of a constant is accessed simply by specifying its name.
+
+Unlike variables, a constant is not prepended with a $.
+
+It is also possible to use the constant() function to read a constant's value if the constant's name is obtained dynamically.
+
+Use get_defined_constants() to get a list of all defined constants.
+
+If an undefined constant is used an Error is thrown.
+
+To check if a constant is set, use the defined() function.
+
+These are the differences between constants and variables:
+
+Constants do not have a dollar sign ($) before them;
+Constants may be defined and accessed anywhere without regard to variable scoping rules;
+Constants may not be redefined or undefined once they have been set; and
+Constants may only evaluate to scalar values or arrays.
+Example
+Defining Constants
+
+Copy
+<?php
+define("CONSTANT", "Hello world.");
+echo CONSTANT; // outputs "Hello world."
+echo Constant; // Emits an Error: Undefined constant "Constant"
+               // Prior to PHP 8.0.0, outputs "Constant" and issues a warning.
+?>
+Defining Constants using the const keyword
+
+Copy
+<?php
+// Simple scalar value
+const CONSTANT = 'Hello World';
+
+echo CONSTANT;
+
+// Scalar expression
+const ANOTHER_CONST = CONSTANT.'; test test';
+echo ANOTHER_CONST;
+
+const ANIMALS = array('dog', 'cat', 'bird');
+echo ANIMALS[1]; // outputs "cat"
+
+// Constant arrays
+define('ANIMALS', array(
+    'dog',
+    'cat',
+    'bird'
+));
+echo ANIMALS[1]; // outputs "cat"
+?>
+As opposed to defining constants using define(), constants defined using the const keyword must be declared at the top-level scope because they are defined at compile-time.
+
+This means that they cannot be declared inside functions, loops, if statements or try/ catch blocks.
