@@ -1,0 +1,31 @@
+When PHP parses a file, it looks for opening and closing tags, which are <?php and ?>
+
+Those two tags tell PHP to start and stop interpreting the code between them.
+
+Parsing in this manner allows PHP to be embedded in all sorts of different documents, as everything outside of a pair of opening and closing tags is ignored by the PHP parser.
+
+
+Short hand
+PHP includes a short echo tag <?= which is a short-hand to the more verbose <?php echo.
+
+You can use the short echo tag to <?= 'print this string' ?>.
+
+It's equivalent to <?php echo 'print this string' ?>.
+
+Short tags are available by default but can be disabled either via the short_open_tag php.ini configuration file directive, or are disabled by default if PHP is built with the --disable-short-tags configuration.
+
+As short tags can be disabled it is recommended to only use the normal tags (<?php ?> and <?= ?>) to maximise compatibility.
+
+
+
+If a file contains only PHP code, it is preferable to omit the PHP closing tag at the end of the file.
+
+Copy
+<?php
+echo "Hello world";
+
+// ... more code
+
+echo "Last statement";
+
+// the script ends here with no PHP closing tag
