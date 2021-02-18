@@ -1,0 +1,20 @@
+By default, function arguments are passed by value.
+
+If the value of the argument within the function is changed, it does not get changed outside of the function.
+
+PHP also support passing arguments by reference to function.
+
+To have an argument to a function always passed by reference, prepend an ampersand (&) to the argument name in the function definition:
+
+Passing function parameters by reference
+
+Copy
+<?php
+function add_some_extra(&$string)
+{
+    $string .= ' end.';
+}
+$str = 'start, ';
+add_some_extra($str);
+echo $str;  
+?>
