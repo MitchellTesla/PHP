@@ -1,0 +1,112 @@
+A function may be defined using syntax such as the following:
+
+Pseudo code to demonstrate function uses
+
+Copy
+<?php
+function foo($arg_1, $arg_2, /* ..., */ $arg_n)
+{
+    echo "Example function.\n";
+    return $retval;
+}
+echo "here\n"; 
+foo(1,2,3);
+?>
+
+
+
+Function names follow the same rules as other labels in PHP.
+
+A valid function name starts with a letter or underscore, followed by any number of letters, numbers, or underscores.
+
+Functions need not be defined before they are referenced, except when a function is conditionally defined as shown in the two examples below.
+
+When a function is defined in a conditional manner such as the two examples shown.
+
+Its definition must be processed prior to being called.
+
+Conditional functions
+
+Copy
+<?php
+$makefoo = true;
+
+/* We can't call foo() from here
+   since it doesn't exist yet,
+   but we can call bar() */
+
+bar();
+
+if ($makefoo) {
+  echo "here\n"; 
+  function foo()
+  {
+    echo "I don't exist until program execution reaches me.\n";
+  }
+}
+
+/* Now we can safely call foo()
+   since $makefoo evaluated to true */
+
+if ($makefoo) foo();
+
+function bar()
+{
+  echo "here\n"; 
+  echo "I exist immediately upon program start.\n";
+}
+
+?>
+
+
+
+
+Functions within functions
+
+Copy
+<?php
+function foo()
+{
+  echo "here\n"; 
+  function bar()
+  {
+    echo "I don't exist until foo() is called.\n";
+  }
+}
+/* We can't call bar() yet since it doesn't exist. */
+
+foo();
+
+/* Now we can call bar(), foo()'s processing has made it accessible. */
+
+bar();
+?>
+
+
+
+All functions and classes in PHP have the global scope.
+
+All functions and classes can be called outside a function even if they were defined inside and vice versa.
+
+PHP does not support function overloading, nor is it possible to undefine or redefine previously-declared functions.
+
+Function names are case-insensitive for the ASCII characters A to Z.
+
+Both variable number of arguments and default arguments are supported in functions.
+
+It is possible to call recursive functions in PHP.
+
+Recursive functions
+
+Copy
+<?php
+function recursion($a)
+{
+    if ($a < 20) {
+        echo "$a\n";
+        recursion($a + 1);
+    }
+}
+
+recursion(14);
+?>
