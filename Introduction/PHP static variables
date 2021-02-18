@@ -1,0 +1,92 @@
+A static variable exists only in a local function scope, but it does not lose its value when program execution leaves this scope.
+
+Example demonstrating need for static variables
+
+Copy
+<?php
+function test()
+{
+    $a = 0;
+    echo $a;
+    $a++;
+}
+test();
+test();
+test();
+test();
+?>
+Result
+
+
+This function is useless since every time it is called it sets $a to 0 and prints 0.
+
+The $a++ which increments the variable serves no purpose since as soon as the function exits the $a variable disappears.
+
+To make a useful counting function which will not lose track of the current count, the $a variable is declared static:
+
+Example use of static variables
+
+Copy
+<?php
+function test()
+{
+    static $a = 0;
+    echo $a;
+    $a++;
+}
+test();
+test();
+test();
+test();
+?>
+Result
+
+
+Now, $a is initialized only in first call of function and every time the test() function is called it will print the value of $a and increment it.
+
+Static variables also provide one way to deal with recursive functions.
+
+A recursive function is one which calls itself.
+
+The following simple function recursively counts to 10, using the static variable $count to know when to stop:
+
+Static variables with recursive functions
+
+Copy
+<?php
+function test()
+{
+    static $count = 0;
+
+    $count++;
+    echo $count;
+    if ($count < 10) {
+        test();
+    }
+    $count--;
+}
+test();
+?>
+Result
+
+
+Static variables can be assigned values which are the, result of constant expressions, but dynamic expressions, such as function calls, will cause a parse error.
+
+Declaring static variables
+
+Copy
+<?php
+function foo(){
+    static $int = 0;          // correct
+    static $int = 1+2;        // correct
+    static $int = sqrt(121);  // wrong  (as it is a function)
+
+    $int++;
+    echo $int;
+}
+foo();
+foo();
+?>
+Note:
+
+Static declarations are resolved in compile-time.
