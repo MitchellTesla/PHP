@@ -1,0 +1,22 @@
+The unset() function allows removing keys from an array.
+
+Be aware that the array will not be reindexed.
+
+If a true "remove and shift" behavior is desired, the array can be reindexed using the array_values() function.
+
+Copy
+<?php
+$a = array(1 => 'one', 2 => 'two', 3 => 'three');
+var_dump($a);
+unset($a[2]);
+var_dump($a);
+/* will produce an array that would have been defined as
+   $a = array(1 => 'one', 3 => 'three');
+   and NOT
+   $a = array(1 => 'one', 2 =>'three');
+*/
+
+$b = array_values($a);
+// Now $b is array(0 => 'one', 1 =>'three')
+var_dump($a);
+?>
