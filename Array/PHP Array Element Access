@@ -1,0 +1,48 @@
+Accessing array elements with square bracket syntax
+Array elements can be accessed using the array[key] syntax.
+
+Accessing array elements
+
+Copy
+<?php
+$array = array(
+    "foo" => "bar",
+    42    => 24,
+    "multi" => array(
+         "dimensional" => array(
+             "array" => "foo"
+         )
+    )
+);
+
+var_dump($array["foo"]);
+var_dump($array[42]);
+var_dump($array["multi"]["dimensional"]["array"]);
+?>
+
+
+
+Note:
+Both square brackets and curly braces can be used interchangeably for accessing array elements.
+
+For example, $array[42] and $array{42} will both do the same thing in the example above).
+
+Array dereferencing
+
+Copy
+<?php
+function getArray() {
+    return array(1, 2, 3);
+}
+
+$secondElement = getArray()[1];
+
+// or
+list(, $secondElement) = getArray();
+
+print_r($secondElement);
+?>
+
+
+
+Attempting to access an array key which has not been defined is the same as accessing any other undefined variable: an E_NOTICE-level error message will be issued, and the result will be null
