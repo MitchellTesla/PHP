@@ -1,0 +1,77 @@
+Nowdocs are to single-quoted strings what heredocs are to double-quoted strings.
+
+A nowdoc is specified similarly to a heredoc, but no parsing is done inside a nowdoc.
+
+The construct is ideal for embedding PHP code or other large blocks of text without the need for escaping.
+
+It shares some features in common with the XML <![CDATA[ ]]> construct, in that it declares a block of text which is not for parsing.
+
+A nowdoc is identified with the same <<< sequence used for heredocs, but the identifier which follows is enclosed in single quotes, e.g. <<<'EOT'.
+
+All the rules for heredoc identifiers also apply to nowdoc identifiers, especially those regarding the appearance of the closing identifier.
+
+Nowdoc string quoting example
+
+Copy
+<?php
+echo <<<'EOD'
+Example of string spanning multiple lines
+using nowdoc syntax. Backslashes are always treated literally,
+e.g. \\ and \'.
+EOD;
+Result
+
+
+Copy
+The above example will output:
+Copy
+Example of string spanning multiple lines
+using nowdoc syntax. Backslashes are always treated literally,
+e.g. \\ and \'.
+Result
+
+
+Nowdoc string quoting example with variables
+
+Copy
+<?php
+class foo
+{
+    public $foo;
+    public $bar;
+
+    function __construct()
+    {
+        $this->foo = 'Foo';
+        $this->bar = array('Bar1', 'Bar2', 'Bar3');
+    }
+}
+
+$foo = new foo();
+$name = 'MyName';
+
+echo <<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \x41
+EOT;
+?>
+Result
+
+
+The above example will output:
+
+Copy
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \x41
+Static data example
+
+Copy
+<?php
+class foo {
+    public $bar = <<<'EOT'
+bar
+EOT;
+}
+?>
