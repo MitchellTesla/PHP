@@ -1,0 +1,63 @@
+PHP Iterable is a pseudo-type.
+
+It accepts any array or object implementing the Traversable interface.
+
+Both of these types are iterable using foreach and can be used with yield from within a generator.
+
+Using Iterables
+Iterable can be used as a parameter type to indicate that a function requires a set of values, but does not care about the form of the value set.
+
+If a value is not an array or instance of Traversable, a TypeError will be thrown.
+
+Iterable parameter type example
+
+Copy
+<?php
+
+function foo(iterable $iterable) {
+    foreach ($iterable as $value) {
+        // ...
+    }
+}
+
+?>
+Parameters declared as iterable may use null or an array as a default value.
+
+Iterable parameter default value example
+
+Copy
+<?php
+
+function foo(iterable $iterable = []) {
+    // ...
+}
+
+?>
+Iterable can also be used as a return type to indicate a function will return an iterable value.
+
+If the returned value is not an array or instance of Traversable, a TypeError will be thrown.
+
+Iterable return type example
+
+Copy
+<?php
+
+function bar(): iterable {
+    return [1, 2, 3];
+}
+
+?>
+Functions declaring iterable as a return type may also be generators.
+
+Iterable generator return type example
+
+Copy
+<?php
+
+function gen(): iterable {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+?>
