@@ -1,0 +1,27 @@
+To explicitly convert a value to bool, use the (bool) or (boolean) casts.
+
+In most cases the cast is unnecessary, since a value will be automatically converted if an operator, function or control structure requires a bool argument.
+
+When converting to bool, the following values are considered false:
+
+the boolean false itself
+the integers 0 and -0 (zero)
+the floats 0.0 and -0.0 (zero)
+the empty string, and the string "0"
+an array with zero elements
+the special type NULL (including unset variables)
+Every other value is considered true including any resource and NAN.
+
+-1 is considered true, like any other non-zero (whether negative or positive) number!
+
+Copy
+<?php
+var_dump((bool) "");        // bool(false)
+var_dump((bool) 1);         // bool(true)
+var_dump((bool) -2);        // bool(true)
+var_dump((bool) "foo");     // bool(true)
+var_dump((bool) 2.3e5);     // bool(true)
+var_dump((bool) array(12)); // bool(true)
+var_dump((bool) array());   // bool(false)
+var_dump((bool) "false");   // bool(true)
+?>
