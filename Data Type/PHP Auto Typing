@@ -1,0 +1,30 @@
+The type of a variable in PHP is not usually set by the programmer; rather, it is decided at runtime by PHP depending on the context in which that variable is used.
+
+To check the type and value of an expression, use the var_dump() function.
+
+To get a human-readable representation of a type for debugging, use the gettype() function.
+
+To check for a certain type, use the is_type() functions.
+
+Copy
+<?php
+$a_bool = TRUE;   // a boolean
+$a_str  = "foo";  // a string
+$a_str2 = 'foo';  // a string
+$an_int = 12;     // an integer
+
+echo gettype($a_bool); // prints out:  boolean
+echo gettype($a_str);  // prints out:  string
+
+if (is_int($an_int)) {
+    $an_int += 4;
+}
+
+if (is_string($a_bool)) {
+    echo "String: $a_bool";
+}
+?>
+Result
+
+
+To forcibly convert a variable to a certain type, either cast the variable or use the settype() function on it.
