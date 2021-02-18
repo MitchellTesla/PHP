@@ -1,0 +1,42 @@
+There is no int division operator in PHP, to achieve this use the intdiv() function.
+
+1/2 yields the float 0.5.
+
+The value can be cast to an int to round it towards zero, or the round() function provides finer control over rounding.
+
+Copy
+<?php
+var_dump(25/7);         // float(3.5714285714286)
+var_dump((int) (25/7)); // int(3)
+var_dump(round(25/7));  // float(4)
+?>
+Result
+
+
+Converting to integer
+To explicitly convert a value to int, use either the (int) or (integer) casts.
+
+However, in most cases the cast is not needed, since a value will be automatically converted if an operator, function or control structure requires an int argument.
+
+A value can also be converted to int with the intval() function.
+
+If a resource is converted to an int, then the result will be the unique resource number assigned to the resource by PHP at runtime.
+
+From booleans, false will yield 0 (zero), and true will yield 1 (one).
+
+When converting from float to int, the number will be rounded towards zero.
+
+NaN and Infinity will always be zero when cast to int.
+
+Never cast an unknown fraction to int, as this can sometimes lead to unexpected results.
+
+Copy
+<?php
+echo (int) ( (0.1+0.7) * 10 ); // echoes 7!
+?>
+Result
+
+
+If the string is numeric or leading numeric then it will resolve to the corresponding integer value, otherwise it is converted to zero (0).
+
+null is always converted to zero (0)
