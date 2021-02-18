@@ -1,0 +1,18 @@
+Classes extending or implementing may broaden methods using array or Traversable.
+
+Iterable type variance example
+
+Copy
+<?php
+
+interface Example {
+    public function method(array $array): iterable;
+}
+
+class ExampleImplementation implements Example {
+    public function method(iterable $iterable): array {
+        // Parameter broadened and return type narrowed.
+    }
+}
+
+?>
