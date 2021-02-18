@@ -1,0 +1,11 @@
+The require_once expression is identical to require except PHP will check if the file has already been included, and if so, not include (require) it again.
+
+The include_once statement includes and evaluates the specified file during the execution of the script.
+
+If the code from a file has already been included, it will not be included again, and include_once returns true.
+
+The file will be included just once.
+
+include_once may be used when the same file might be included more than once.
+
+It may help avoid problems such as function redefinitions, variable value reassignments, etc.
