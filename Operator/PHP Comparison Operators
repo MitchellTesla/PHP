@@ -1,0 +1,63 @@
+Comparison operators allow you to compare two values.
+
+Example	Name	Result
+$a == $b	Equal	true if $a is equal to $b after type juggling.
+$a === $b	Identical	true if $a is equal to $b, and they are of the same type.
+$a != $b	Not equal	true if $a is not equal to $b after type juggling.
+$a <> $b	Not equal	true if $a is not equal to $b after type juggling.
+$a !== $b	Not identical	true if $a is not equal to $b, or they are not of the same type.
+$a < $b	Less than	true if $a is strictly less than $b.
+$a > $b	Greater than	true if $a is strictly greater than $b.
+$a <= $b	Less than or equal to	true if $a is less than or equal to $b.
+$a >= $b	Greater than or equal to	true if $a is greater than or equal to $b.
+$a <=> $b	Spaceship	An int less than, equal to, or greater than zero when $a is less than, equal to, or greater than $b, respectively.
+If both operands are numeric strings, or one operand is a number and the other one is a numeric string, then the comparison is done numerically.
+
+The type conversion does not take place when the comparison is === or !== as this involves comparing the type as well as the value.
+
+Copy
+<?php
+// Integers
+echo 1 <=> 1; // 0
+echo 1 <=> 2; // -1
+echo 2 <=> 1; // 1
+
+// Floats
+echo 1.5 <=> 1.5; // 0
+echo 1.5 <=> 2.5; // -1
+echo 2.5 <=> 1.5; // 1
+
+// Strings
+echo "a" <=> "a"; // 0
+echo "a" <=> "b"; // -1
+echo "b" <=> "a"; // 1
+
+echo "a" <=> "aa"; // -1
+echo "zz" <=> "aa"; // 1
+
+// Arrays
+echo [] <=> []; // 0
+echo [1, 2, 3] <=> [1, 2, 3]; // 0
+echo [1, 2, 3] <=> []; // 1
+echo [1, 2, 3] <=> [1, 2, 1]; // 1
+echo [1, 2, 3] <=> [1, 2, 4]; // -1
+
+// Objects
+$a = (object) ["a" => "b"];
+$b = (object) ["a" => "b"];
+echo $a <=> $b; // 0
+
+$a = (object) ["a" => "b"];
+$b = (object) ["a" => "c"];
+echo $a <=> $b; // -1
+
+$a = (object) ["a" => "c"];
+$b = (object) ["a" => "b"];
+echo $a <=> $b; // 1
+
+// not only values are compared; keys must match
+$a = (object) ["a" => "b"];
+$b = (object) ["b" => "b"];
+echo $a <=> $b; // 1
+
+?>
