@@ -1,0 +1,20 @@
+Testing floating point values for equality is problematic, due to the way that they are represented internally.
+
+However, there are ways to make comparisons of floating point values that work around these limitations.
+
+To test floating point values for equality, an upper bound on the relative error due to rounding is used.
+
+This value is known as the machine epsilon, or unit roundoff, and is the smallest acceptable difference in calculations.
+
+$a and $b are equal to 5 digits of precision.
+
+Copy
+<?php
+$a = 1.23456789;
+$b = 1.23456780;
+$epsilon = 0.00001;
+
+if(abs($a-$b) < $epsilon) {
+    echo "true";
+}
+?>
