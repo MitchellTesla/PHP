@@ -1,0 +1,14 @@
+PHP arrays can contain int and string keys at the same time as PHP does not distinguish between indexed and associative arrays.
+
+Mixed int and string keys
+
+Copy
+<?php
+$array = array(
+    "foo" => "bar",
+    "bar" => "foo",
+    100   => -100,
+    -100  => 100,
+);
+var_dump($array);
+?>
