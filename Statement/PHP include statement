@@ -1,0 +1,78 @@
+The include expression includes and evaluates the specified file.
+
+The explanation below also applies to require.
+
+Path
+Files are included based on the file path given or the include_path specified.
+
+If the file isn't found in the include_path, include will check in the calling script's own directory and the current working directory.
+
+The include construct will emit an E_WARNING if it cannot find a file; this is different behavior from require, which will emit an E_ERROR.
+
+If a path is defined in the include, the include_path will be ignored altogether.
+
+For example, if a filename begins with ../, the parser will look in the parent directory to find the requested file.
+
+Scope
+When a file is included, the code it contains inherits the variable scope of the line on which the include occurs.
+
+Any variables available at that line in the calling file will be available within the called file, from that point forward.
+
+However, all functions and classes defined in the included file have the global scope.
+
+Basic include example
+
+vars.php
+
+Copy
+<?php
+
+$color = 'green';
+$fruit = 'apple';
+
+?>
+test.php
+
+Copy
+<?php
+echo "A $color $fruit"; // A
+
+include 'vars.php';
+
+echo "A $color $fruit"; // A green apple
+
+?>
+
+
+If the include occurs inside a function, then all of the code contained in the called file will behave as though it had been defined inside that function.
+
+So, it will follow the variable scope of that function.
+
+An exception to this rule are magic constants which are evaluated by the parser before the include occurs.
+
+Including within functions
+
+Copy
+<?php
+
+function foo()
+{
+    global $color;
+
+    include 'vars.php';
+
+    echo "A $color $fruit";
+}
+
+/* vars.php is in the scope of foo() so     *
+* $fruit is NOT available outside of this  *
+* scope.  $color is because we declared it *
+* as global.                               */
+
+foo();                    // A green apple
+echo "A $color $fruit";   // A green
+
+?>
+
+
+Any code inside the target file which should be executed as PHP code must be enclosed within valid PHP start and end tags.
