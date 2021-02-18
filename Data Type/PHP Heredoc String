@@ -1,0 +1,45 @@
+The heredoc syntax: <<<.
+
+After this operator, an identifier is provided, then a newline.
+
+The string itself follows, and then the same identifier again to close the quotation.
+
+The closing identifier must begin in the first column of the line.
+
+Also, the identifier must follow the same naming rules as any other label in PHP: it must contain only alphanumeric characters and underscores, and must start with a non-digit character or underscore.
+
+The line with the closing identifier must contain no other characters, except a semicolon (;).
+
+That means especially that the identifier may not be indented, and there may not be any spaces or tabs before or after the semicolon.
+
+The first character before the closing identifier must be a newline as defined by the local operating system.
+
+This is \n on UNIX systems, including macOS.
+
+The closing delimiter must also be followed by a newline.
+
+If this rule is broken and the closing identifier is not "clean", it will not be considered a closing identifier, and PHP will continue looking for one.
+
+If a proper closing identifier is not found before the end of the current file, a parse error will result at the last line.
+
+Invalid example
+
+Copy
+<?php
+class MyClass {
+    public $bar = <<<EOT
+bar
+    EOT;
+}
+// Identifier must not be indented
+?>
+Valid example
+
+Copy
+<?php
+class MyClass {
+    public $bar = <<<EOT
+bar
+EOT;
+}
+?>
