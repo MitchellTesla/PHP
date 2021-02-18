@@ -1,0 +1,21 @@
+PHP supports one execution operator: backticks (``).
+
+Note that these are not single-quotes!
+
+PHP will attempt to execute the contents of the backticks as a shell command;
+
+the output will be returned.
+
+Use of the backtick operator is identical to shell_exec().
+
+Copy
+<?php
+$output = `dir`;//`ls -al`;
+echo $output;
+?>
+Result
+
+
+The backtick operator is disabled when shell_exec() is disabled.
+
+Unlike some other languages, backticks have no special meaning within double-quoted strings.
