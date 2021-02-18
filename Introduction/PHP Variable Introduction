@@ -1,0 +1,21 @@
+Variables in PHP are represented by a dollar sign followed by the name of the variable.
+
+The variable name is case-sensitive.
+
+Naming
+Variable names follow the same rules as other labels in PHP.
+
+A valid variable name starts with a letter or underscore, followed by any number of letters, numbers, or underscores.
+
+A letter is a-z, A-Z.
+
+$this is a special variable that can't be assigned.
+
+Copy
+<?php
+$var = 'Bob';
+$Var = 'Joe';
+echo "$var, $Var";      // outputs "Bob, Joe"
+$4site = 'test';     // invalid; starts with a number
+$_4site = 'test';    // valid; starts with an underscore
+?>
