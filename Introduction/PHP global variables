@@ -1,0 +1,64 @@
+In PHP global variables must be declared global inside a function if they are going to be used in that function.
+
+First, an example use of global:
+
+Copy
+<?php
+$a = 1;
+$b = 2;
+
+function Sum()
+{
+    global $a, $b;
+
+    $b = $a + $b;
+}
+
+Sum();
+echo $b;
+?>
+Result
+
+
+The above script will output 3.
+
+By declaring $a and $b global within the function, all references to either variable will refer to the global version.
+
+There is no limit to the number of global variables that can be manipulated by a function.
+
+A second way to access variables from the global scope is to use the special PHP-defined $GLOBALS array.
+
+The previous example can be rewritten as:
+
+Using $GLOBALS instead of global
+
+Copy
+<?php
+$a = 1;
+$b = 2;
+function Sum()
+{
+    $GLOBALS['b'] = $GLOBALS['a'] + $GLOBALS['b'];
+}
+
+Sum();
+echo $b;
+?>
+Result
+
+
+The $GLOBALS array is an associative array with the name of the global variable being the key and the contents of that variable being the value of the array element.
+
+Notice how $GLOBALS exists in any scope, this is because $GLOBALS is a superglobal.
+
+Here's an example demonstrating the power of superglobals:
+
+Copy
+<?php
+function test_superglobal()
+{
+    echo $_POST['name'];
+}
+?>
+Note:
+Using global keyword outside a function is not an error. It can be used if the file is included from inside a function.
