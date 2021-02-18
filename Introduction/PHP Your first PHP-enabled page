@@ -1,0 +1,73 @@
+Create a file named hello.php and put it in your web server's root directory (DOCUMENT_ROOT) with the following content:
+
+Copy
+<html>
+ <head>
+  <title>PHP Test</title>
+ </head>
+ <body>
+ <?php echo '<p>Hello World</p>'; ?> 
+ </body>
+</html>
+
+
+Use your browser to access the file with your web server's URL, ending with the /hello.php file reference.
+
+When developing locally this URL will be something like http://localhost/hello.php or http://127.0.0.1/hello.php but this depends on the web server's configuration.
+
+If everything is configured correctly, this file will be parsed by PHP and the following output will be sent to your browser:
+
+Copy
+<html>
+ <head>
+  <title>PHP Test</title>
+ </head>
+ <body>
+ <p>Hello World</p>
+ </body>
+</html>
+
+
+
+This program displays: Hello World using the PHP echo statement.
+
+Get system information from PHP
+
+Copy
+<?php phpinfo(); ?>
+
+
+
+Check what sort of browser the visitor is using.
+
+We check the user agent string the browser sends as part of the HTTP request.
+
+This information is stored in a variable.
+
+Variables always start with a dollar-sign in PHP.
+
+The variable we are interested in right now is $_SERVER['HTTP_USER_AGENT'].
+
+$_SERVER is a special reserved PHP variable that contains all web server information.
+
+It is known as a super global.
+
+
+
+To display this variable, you can simply do:
+
+
+<?php
+echo $_SERVER['HTTP_USER_AGENT'];
+?>
+
+A sample output of this script may be:
+
+Copy
+Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)
+
+
+Getting PHP to run from the command line can be performed.
+
+Copy
+C:\PHP5\php.exe -f "C:\PHP Scripts\script.php" -- -arg1 -arg2 -arg3
