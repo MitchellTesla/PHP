@@ -1,0 +1,12 @@
+PHP determines the types of variables and converts them as needed.
+
+It is not always obvious what type a given variable is.
+
+PHP includes several functions which find out what type a variable is, such as:
+
+gettype(),
+is_array(),
+is_float(),
+is_int(),
+is_object(), and
+is_string().
