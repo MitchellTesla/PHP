@@ -1,0 +1,119 @@
+Bitwise operators allow evaluation and manipulation of specific bits within an integer.
+
+Example	Name	Result
+$a & $b	And	Bits that are set in both $a and $b are set.
+$a | $b	Or (inclusive or)	Bits that are set in either $a or $b are set.
+$a ^ $b	Xor (exclusive or)	Bits that are set in $a or $b but not both are set.
+~ $a	Not	Bits that are set in $a are not set, and vice versa.
+$a << $b	Shift left	Shift the bits of $a $b steps to the left (each step means "multiply by two")
+$a >> $b	Shift right	Shift the bits of $a $b steps to the right (each step means "divide by two")
+Bit shifting in PHP is arithmetic.
+
+Bits shifted off either end are discarded.
+
+Left shifts have zeros shifted in on the right while the sign bit is shifted out on the left, meaning the sign of an operand is not preserved.
+
+Right shifts have copies of the sign bit shifted in on the left, meaning the sign of an operand is preserved.
+
+Use parentheses to ensure the desired precedence.
+
+For example, $a & $b == true evaluates the equivalency then the bitwise and; while ($a & $b) == true evaluates the bitwise and then the equivalency.
+
+If both operands for the &, | and ^ operators are strings, then the operation will be performed on the ASCII values of the characters and the result will be a string.
+
+In all other cases, both operands will be converted to integers and the result will be an integer.
+
+If the operand for the ~ operator is a string, the operation will be performed on the ASCII values of the characters and the result will be a string, otherwise the operand and the result will be treated as integers.
+
+Both operands and the result for the << and >> operators are always treated as integers.
+
+Bitwise AND, OR and XOR operations on integers
+
+Copy
+<?php
+$format = '(%1$2d = %1$04b) = (%2$2d = %2$04b)'
+        . ' %3$s (%4$2d = %4$04b)' . "\n";
+
+echo <<<EOH
+ ---------     ---------  -- ---------
+ result        value      op test
+ ---------     ---------  -- ---------
+EOH;
+$values = array(0, 1, 2, 4, 8);
+$test = 2 + 4;
+
+echo "\n Bitwise AND \n";
+foreach ($values as $value) {
+    $result = $value & $test;
+    printf($format, $result, $value, '&', $test);
+}
+
+echo "\n Bitwise Inclusive OR \n";
+foreach ($values as $value) {
+    $result = $value | $test;
+    printf($format, $result, $value, '|', $test);
+}
+
+echo "\n Bitwise Exclusive OR (XOR) \n";
+foreach ($values as $value) {
+    $result = $value ^ $test;
+    printf($format, $result, $value, '^', $test);
+}
+?>
+Result
+
+
+Bitwise XOR operations on strings
+
+Copy
+<?php
+echo 12 ^ 9; // Outputs '5'
+
+echo "12" ^ "9"; // Outputs the Backspace character (ascii 8)
+                 // ('1' (ascii 49)) ^ ('9' (ascii 57)) = #8
+
+echo "hallo" ^ "hello"; // Outputs the ascii values #0 #4 #0 #0 #0
+                        // 'a' ^ 'e' = #4
+
+echo 2 ^ "3"; // Outputs 1
+              // 2 ^ ((int)"3") == 1
+
+echo "2" ^ 3; // Outputs 1
+              // ((int)"2") ^ 3 == 1
+?>
+Result
+
+
+Bit shifting on integers
+
+Copy
+<?php
+$val = 4;
+$places = 1;
+$res = $val >> $places;
+p($res, $val, '>>', $places, 'copy of sign bit shifted into left side');
+
+function p($res, $val, $op, $places, $note = '') {
+    $format = '%0' . (PHP_INT_SIZE * 8) . "b\n";
+
+    printf("Expression: %d = %d %s %d\n", $res, $val, $op, $places);
+
+    echo " Decimal:\n";
+    printf("  val=%d\n", $val);
+    printf("  res=%d\n", $res);
+
+    echo " Binary:\n";
+    printf('  val=' . $format, $val);
+    printf('  res=' . $format, $res);
+
+    if ($note) {
+        echo " NOTE: $note\n";
+    }
+
+    echo "\n";
+}
+?>
+Result
+
+
+Use functions from the gmp extension for bitwise manipulation on numbers beyond PHP_INT_MAX
