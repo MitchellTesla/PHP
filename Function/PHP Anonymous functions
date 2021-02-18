@@ -1,0 +1,78 @@
+Anonymous functions, also known as closures are functions without names.
+
+Anonymous function example
+
+Copy
+<?php
+echo preg_replace_callback('~-([a-z])~', function ($match) {
+    return strtoupper($match[1]);
+}, 'hello-world test test');
+?>
+
+
+
+Closures can also be used as the values of variables.
+
+Anonymous function variable assignment example
+
+Copy
+<?php
+$greet = function($name)
+{
+    printf("Hello %s\r\n", $name);
+};
+
+$greet('World');
+$greet('PHP');
+?>
+
+
+
+Closures may also inherit variables from the parent scope.
+
+Any such variables must be passed to the use language construct.
+
+As of PHP 7.1, these variables must not include superglobals, $this, or variables with the same name as a parameter.
+
+Inheriting variables from the parent scope
+
+Copy
+<?php
+$message = 'test';
+
+// No "use"
+$example = function () {
+    var_dump($message);
+};
+$example();
+
+// Inherit $message
+$example = function () use ($message) {
+    var_dump($message);
+};
+$example();
+
+// Inherited variable's value is from when the function
+// is defined, not when called
+$message = 'new';
+$example();
+
+// Reset message
+$message = 'test';
+
+// Inherit by-reference
+$example = function () use (&$message) {
+    var_dump($message);
+};
+$example();
+
+// The changed value in the parent scope is reflected inside the function call
+$message = 'new';
+$example();
+
+// Closures can also accept regular arguments
+$example = function ($arg) use ($message) {
+    var_dump($arg . ' ' . $message);
+};
+$example("hello");
+?>
