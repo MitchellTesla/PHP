@@ -1,0 +1,13 @@
+The foreach control structure exists specifically for arrays.
+
+It provides an easy way to traverse an array.
+
+Copy
+<?php
+$colors = array('red', 'blue', 'green', 'yellow');
+
+foreach ($colors as $color) {
+    echo "Do you like $color?\n";
+}
+
+?>
