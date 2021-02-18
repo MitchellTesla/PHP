@@ -1,0 +1,67 @@
+An existing array can be modified by explicitly setting values in it.
+
+This is done by assigning values to the array, specifying the key in brackets.
+
+The key can also be omitted, resulting in an empty pair of brackets ([]).
+
+Copy
+$arr[key] = value;
+$arr[] = value;
+// key may be an int or string
+// value may be any value of any type
+If $arr doesn't exist yet, it will be created, so this is also an alternative way to create an array.
+
+To change a certain value, assign a new value to that element using its key.
+
+To remove a key/value pair, call the unset() function on it.
+
+Copy
+<?php
+$arr = array(5 => 1, 12 => 2);
+print_r($arr);
+$arr[] = 56;    // This is the same as $arr[13] = 56;
+                // at this point of the script
+
+print_r($arr);
+$arr["x"] = 42; // This adds a new element to
+                // the array with key "x"
+print_r($arr);
+unset($arr[5]); // This removes the element from the array
+print_r($arr);
+unset($arr);    // This deletes the whole array
+
+?>
+Result
+
+
+If no key is specified, the maximum of the existing int indices is taken, and the new key will be that maximum value plus 1 (but at least 0).
+
+If no int indices exist yet, the key will be 0 (zero).
+
+Note that the maximum integer key used for this need not currently exist in the array.
+
+It need only have existed in the array at some time since the last time the array was re-indexed.
+
+The following example illustrates:
+
+Copy
+<?php
+// Create a simple array.
+$array = array(1, 2, 3, 4, 5);
+print_r($array);
+
+// Now delete every item, but leave the array itself intact:
+foreach ($array as $i => $value) {
+    unset($array[$i]);
+}
+print_r($array);
+
+// Append an item (note that the new key is 5, instead of 0).
+$array[] = 6;
+print_r($array);
+
+// Re-index:
+$array = array_values($array);
+$array[] = 7;
+print_r($array);
+?>
