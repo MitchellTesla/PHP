@@ -1,0 +1,35 @@
+The variable variable name is a variable name which can be set and used dynamically.
+
+A normal variable is set with a statement such as:
+
+Copy
+<?php
+$a = 'hello';
+?>
+A variable variable takes the value of a variable and treats that as the name of a variable.
+
+In the above example, hello, can be used as the name of a variable by using two dollar signs. i.e.
+
+Copy
+<?php
+$$a = 'world';
+?>
+At this point two variables have been defined and stored in the PHP symbol tree: $a with contents "hello" and $hello with contents "world".
+
+Therefore, this statement:
+
+Copy
+<?php
+echo "$a ${$a}";
+?>
+produces the exact same output as:
+
+Copy
+<?php
+echo "$a $hello";
+?>
+i.e. they both produce: hello world.
+
+Please note that variable variables cannot be used with PHP's Superglobal arrays within functions or class methods.
+
+The variable $this is also a special variable that cannot be referenced dynamically.
