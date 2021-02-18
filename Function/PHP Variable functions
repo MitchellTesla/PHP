@@ -1,0 +1,114 @@
+PHP supports the variable functions.
+
+If a variable name has parentheses appended to it, PHP will look for a function with the same name.
+
+Variable function example
+
+Copy
+<?php
+function f1() {
+    echo "In f1()\n";
+}
+
+function f2($arg = '')
+{
+    echo "In f2(); argument was '$arg'.\n";
+}
+
+// This is a wrapper function around echo
+function echoit($string)
+{
+    echo $string;
+}
+
+$func = 'f1';
+$func();        // This calls f1()
+
+$func = 'f2';
+$func('test');  // This calls f2()
+
+$func = 'echoit';
+$func('test');  // This calls echoit()
+?>
+
+
+
+Object methods can also be called with the variable functions syntax.
+
+Variable method example
+
+Copy
+<?php
+class MyClass
+{
+    function Variable()
+    {
+        $name = 'Bar';
+        $this->$name(); // This calls the Bar() method
+    }
+
+    function Bar()
+    {
+        echo "This is Bar";
+    }
+}
+
+$f1 = new MyClass();
+$funcname = "Variable";
+$f1->$funcname();  // This calls $f1->Variable()
+
+?>
+
+
+
+When calling static methods, the function call is stronger than the static property operator:
+
+Variable method example with static properties
+
+Copy
+<?php
+class MyClass
+{
+    static $variable = 'static property';
+    static function Variable()
+    {
+        echo 'Method Variable called';
+    }
+}
+
+echo MyClass::$variable; 
+// This prints 'static property'. 
+//It does need a $variable in this scope.
+$variable = "Variable";
+MyClass::$variable();  
+
+?>
+
+
+
+Result
+
+
+Complex callables
+
+Copy
+<?php
+class MyClass
+{
+    static function f2()
+    {
+        echo "f2\n";
+    }
+    function baz()
+    {
+        echo "baz\n";
+    }
+}
+
+$func = array("MyClass", "f2");
+$func(); // prints "f2"
+$func = array(new MyClass, "baz");
+$func(); // prints "baz"
+$func = "MyClass::f2";
+$func(); // prints "f2"
+?>
