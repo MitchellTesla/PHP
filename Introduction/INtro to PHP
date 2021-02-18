@@ -1,0 +1,38 @@
+What is PHP?
+PHP stands for "PHP: Hypertext Preprocessor".
+
+It is a widely-used Open Source general-purpose scripting language.
+
+It is especially suited for web development and can be embedded into HTML.
+
+Its syntax draws upon C, Java, and Perl, and is easy to learn.
+
+The PHP language allows web developers to write dynamically generated web pages quickly.
+
+Copy
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+    </head>
+    <body>
+
+        <?php
+            echo "Hi, I'm a PHP script!";
+        ?>
+
+    </body>
+</html>
+
+
+
+
+Instead of outputting HTML, PHP pages contain HTML with embedded code that does the job.
+
+In this case, output "Hi, I'm a PHP script!".
+
+The PHP code is enclosed in special start and end processing instructions <?php and ?> that allow you to jump into and out of "PHP mode."
+
+PHP code is executed on the server, generating HTML which is then sent to the client.
+
+The client would receive the results of running that script, but would not know what the underlying code was.
