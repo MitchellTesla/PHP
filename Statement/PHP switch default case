@@ -1,0 +1,67 @@
+A special case is the default case.
+
+This case matches anything that wasn't matched by the other cases.
+
+For example:
+
+Copy
+<?php
+$i = 10;
+switch ($i) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+    default:
+       echo "i is not equal to 0, 1 or 2";
+}
+?>
+Result
+
+
+Multiple default cases will raise a E_COMPILE_ERROR error.
+
+The alternative syntax for control structures is supported with switches.
+
+Copy
+<?php
+$i = 0;
+switch ($i):
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+    default:
+        echo "i is not equal to 0, 1 or 2";
+endswitch;
+?>
+Result
+
+
+It's possible to use a semicolon instead of a colon after a case like:
+
+Copy
+<?php
+$a = 't';
+switch($a)
+{
+    case 't';
+    case 'c';
+    case 'h';
+        echo 'Good choice';
+    break;
+    default;
+        echo 'default...';
+    break;
+}
+?>
