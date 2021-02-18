@@ -1,0 +1,38 @@
+The "??" is the null coalescing operator.
+
+This operator does not emit a notice or warning if the left-hand side value does not exist.
+
+This is especially useful on array keys.
+
+Assigning a default value
+
+Copy
+<?php
+// Example usage for: Null Coalesce Operator
+$action = $_POST['action'] ?? 'default';
+
+// The above is identical to this if/else statement
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+} else {
+    $action = 'default';
+}
+
+?>
+The null coalescing operator is an expression, and that it doesn't evaluate to a variable, but to the result of an expression.
+
+The null coalescing operator allows for simple nesting:
+
+Nesting null coalescing operator
+
+Copy
+<?php
+
+$foo = null;
+$bar = null;
+$baz = 1;
+$qux = 2;
+
+echo $foo ?? $bar ?? $baz ?? $qux; // outputs 1
+
+?>
