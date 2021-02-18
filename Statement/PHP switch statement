@@ -1,0 +1,55 @@
+The switch statement is similar to a series of if statements on the same expression.
+
+Unlike some other languages, the continue statement applies to switch and acts similar to break.
+
+If you have a switch inside a loop and wish to continue to the next iteration of the outer loop, use continue 2.
+
+Note that switch/case does loose comparison.
+
+The following two examples are two different ways to write the same thing, one using a series of if and elseif statements, and the other using the switch statement:
+
+switch structure
+
+Copy
+<?php
+$i = 0;
+if ($i == 0) {
+    echo "i equals 0";
+} elseif ($i == 1) {
+    echo "i equals 1";
+} elseif ($i == 2) {
+    echo "i equals 2";
+}
+
+switch ($i) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+}
+?>
+Result
+
+
+switch structure allows usage of strings
+
+Copy
+<?php
+$i = 0;
+switch ($i) {
+    case "apple":
+        echo "i is apple";
+        break;
+    case "bar":
+        echo "i is bar";
+        break;
+    case "cake":
+        echo "i is cake";
+        break;
+}
+?>
