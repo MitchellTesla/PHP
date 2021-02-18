@@ -1,0 +1,17 @@
+There are two string operators.
+
+The first is the concatenation operator ('.'), which returns the concatenation of its right and left arguments.
+
+The second is the concatenating assignment operator ('.='), which appends the argument on the right side to the argument on the left side.
+
+Copy
+<?php
+$a = "Hello ";
+$b = $a . "World!"; // now $b contains "Hello World!"
+print_r($b);
+
+$a = "Hello ";
+
+$a .= "World!";     // now $a contains "Hello World!"
+print_r($b);
+?>
