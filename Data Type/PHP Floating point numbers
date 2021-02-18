@@ -1,0 +1,15 @@
+Floating point numbers (also known as "floats", "doubles", or "real numbers") can be specified using any of the following syntaxes:
+
+Copy
+<?php
+$a = 1.234; 
+$b = 1.2e3; 
+$c = 7E-10;
+$d = 1_234.567; // as of PHP 7.4.0
+?>
+The size of a float is platform-dependent, although a maximum of approximately 1.8e308 with a precision of roughly 14 decimal digits is a common value (the 64 bit IEEE format).
+
+Floating point precision
+Floating point numbers have limited precision.
+
+This can lead to confusing results: for example, floor((0.1+0.7)*10) will usually return 7 instead of the expected 8, since the internal representation will be something like 7.9999999999999991118
